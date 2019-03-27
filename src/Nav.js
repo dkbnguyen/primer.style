@@ -1,20 +1,36 @@
 import React from 'react'
-import NavLink from './NavLink'
-import {Box, Text, Link} from '@primer/components'
-import LinkLight from './LinkLight'
-import Octicon, {MarkGithub} from '@githubprimer/octicons-react'
+import {Box, Flex, Text} from '@primer/components'
+import Octicon from './Octicon'
+import {MarkGithub} from '@githubprimer/octicons-react'
+import {Link as RouterLink} from 'react-router-dom'
 
-const Nav = props => (
-  <Box bg='gray.9' py={3}>
-    <div className='d-flex flex-items-center p-responsive'>
-      <LinkLight nounderline pl={3} href='/'>
-        <Box color='blue.2' className="d-flex flex-items-center">
-          <Octicon color="blue.2" icon={MarkGithub} ariaLabel="GitHub Primer home" size='medium' />
-          <Text mx={3} color="blue.2" fontSize="2" lineHeight="condensed" >Primer</Text>
-        </Box>
-      </LinkLight>
-    </div>
-  </Box>
-)
-
-export default Nav
+export default function Nav() {
+  return (
+    <Box bg="gray.9" py={3} px={5}>
+      <Flex alignItems="center">
+        <Flex flex="auto">
+          <RouterLink style={{color: 'inherit'}} to="/">
+            <Flex color="blue.2" alignItems="center">
+              <Octicon icon={MarkGithub} ariaLabel="Primer home" size="medium" />
+              <Text mx={3} fontSize="2" lineHeight="condensed">
+                Primer
+              </Text>
+            </Flex>
+          </RouterLink>
+        </Flex>
+        <Text is="div" px={3} fontSize={2} color="blue.2">
+          <RouterLink style={{color: 'inherit'}} to="/team">
+            <Box display={['inline', 'none']}>Team</Box>
+            <Box display={['none', 'inline']}>Meet the team</Box>
+          </RouterLink>
+        </Text>
+        <Text is="div" pl={3} fontSize={2} color="blue.2">
+          <RouterLink style={{color: 'inherit'}} to="/news">
+            <Box display={['inline', 'none']}>News</Box>
+            <Box display={['none', 'inline']}>What’s new</Box>
+          </RouterLink>
+        </Text>
+      </Flex>
+    </Box>
+  )
+}
